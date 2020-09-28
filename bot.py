@@ -11,8 +11,6 @@ logger = logging.getLogger()
 
 TOKEN = "FILL_IN"
 
-users = []
-
 
 def start_bot():
     # 1. Build Updater
@@ -47,7 +45,7 @@ def button_reaction(update, context):
 
     context.bot.send_message(chat_id=message.chat.id, text=f"{category}!")
 
-    top_headlines = news_api.get_api().get_top_headlines(category='business', country='de')
+    top_headlines = news_api.get_api().get_top_headlines(category=f"{category.lower()}", country='de')
 
     article = random.sample(top_headlines["articles"], k=1)[0]
 
